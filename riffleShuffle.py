@@ -7,8 +7,8 @@ from scipy.special import binom, factorial
 # creates a deck with n cards
 def deck_generator(n):
     arr = []
-    for i in range(n):
-        arr.append(n)
+    for i in range(0,n):
+        arr.append(i)
     return arr
 
 # simulates a top to random shuffle on a deck of cards (arr)
@@ -73,13 +73,16 @@ def simulate(deck_size, shuffle_type, number_of_shuffles, card_above, card_below
     true_count = 0
     for i in range(0, 10000):
         deck = deck_generator(deck_size)
+        #print(deck)
         for i in range(0, number_of_shuffles):
             if shuffle_type == 'top':
                 deck = top_to_random(deck)
             elif shuffle_type == 'gsr':
                 deck = gsr(deck)
+            #print(deck)
         if test_order(card_above, card_below, deck) == 1:
-            true_count +=1
+            true_count += 1
+            #print(true_count)
     return true_count/10000
 
-print(simulate(13,'top',7,0,8))
+print(simulate(15,'gsr',1,6,8))
