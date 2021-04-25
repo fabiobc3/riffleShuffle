@@ -64,5 +64,22 @@ def test_order(i, j, arr):
             position_of_i = r
         elif arr[r] == j:
             position_of_j = r
-    return position_of_i > position_of_j
+    if position_of_i < position_of_j:
+        return 1
+    elif position_of_i > position_of_j:
+        return 0
 
+def simulate(deck_size, shuffle_type, number_of_shuffles, card_above, card_below):
+    true_count = 0
+    for i in range(0, 10000):
+        deck = deck_generator(deck_size)
+        for i in range(0, number_of_shuffles):
+            if shuffle_type == 'top':
+                deck = top_to_random(deck)
+            elif shuffle_type == 'gsr':
+                deck = gsr(deck)
+        if test_order(card_above, card_below, deck) == 1:
+            true_count +=1
+    return true_count/10000
+
+print(simulate(13,'top',7,0,8))
