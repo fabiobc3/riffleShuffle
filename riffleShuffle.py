@@ -69,6 +69,9 @@ def test_order(i, j, arr):
     elif position_of_i > position_of_j:
         return 0
 
+# For the number of trials:
+# 1 / t^0.5 = 0.01
+# t = 10000
 def simulate(deck_size, shuffle_type, number_of_shuffles, card_above, card_below):
     true_count = 0
     for i in range(0, 10000):
